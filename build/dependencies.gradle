@@ -1,0 +1,176 @@
+// Dependencies
+// @see https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/dsl/DependencyHandler.html
+
+ext {
+  // define library's versions
+  versions = [
+    // base library
+    guava: '20.+',
+    jodaTime: '2.9+',
+
+    // apache commons
+    common_io: '1.+',
+    common_pool: '2.+',
+    common_lang3: '3.+',
+    common_collections: '3.+',
+
+    // logging
+    slf4j: '1.7.+',
+    logback: '1.2.+',
+
+    // json
+    gson: '2.+',
+    fastjson: '1.2.+',
+    jackson: '2.8.+',
+
+    // registration
+    jetcd: '0.0.2',
+
+    // io
+    okio: '1.+',
+    okhttp: '3.+',
+    netty: '4.1.+',
+
+    // spring
+    spring: '4.3.5.RELEASE',
+
+    // pool
+    druid: '1.0.16',
+
+    // mysql
+    mybatis: '3.4.1',
+    mybatis_spring: '1.3.0',
+    mysql_connector: '5.1.37',
+
+    // cache
+    spring_redis: '1.7.6.RELEASE',
+    jedis: '2.+',
+
+    // mq
+    kafka: '1.1.+',
+
+    // spark
+    spark: '2.3.0',
+
+    // mongo
+    mongo_spark: '2.2.1',
+    mongo: '3.6.3',
+
+    // hadoop
+    hadoop_aws: '2.6.5',
+
+    // others
+    aws: '1.11.+',
+    ga: '1.1.2',
+    thrift: '0.10.0',
+  ]
+
+  // define test library's versions
+  test_versions = [
+    junit: '4.+',
+    mockito: '2.+',
+    powermock: '1.+',
+  ]
+
+  // define gradle plugins' versions
+  plugin_versions = [
+    shadow: '2.+',
+    spring_boot: '1.5.7.RELEASE',
+  ]
+
+  // define libraries that needed in compile time
+  libraries = [
+    // base library
+    javax_inject: 'javax.inject:javax.inject:1',
+    javax_servlet: 'javax.servlet:javax.servlet-api:3.0.1',
+    guava: "com.google.guava:guava:${versions.guava}",
+    jodaTime: "joda-time:joda-time:${versions.jodaTime}",
+
+    // logging
+    slf4j: "org.slf4j:slf4j-api:${versions.slf4j}",
+    slf4j_api: "org.slf4j:slf4j-api:${versions.slf4j}",
+    logback: "ch.qos.logback:logback-classic:${versions.logback}",
+    logback_core: "ch.qos.logback:logback-core:${versions.logback}",
+
+    // json
+    gson: "com.google.code.gson:gson:${versions.gson}",
+    fastjson: "com.alibaba:fastjson:${versions.fastjson}",
+    jackson_core: "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
+    jackson_databinding: "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+
+    // registration
+    jetcd: "com.coreos:jetcd-core:${versions.jetcd}",
+
+    // apache commons
+    common_io: "org.apache.commons:commons-io:${versions.common_io}",
+    common_pool: "org.apache.commons:commons-pool2:${versions.common_pool}",
+    common_lang3: "org.apache.commons:commons-lang3:${versions.common_lang3}",
+    common_collections: "commons-collections:commons-collections:${versions.common_collections}",
+
+    // io
+    okio: "com.squareup.okio:okio:${versions.okio}",
+    okhttp: "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+    netty: "io.netty:netty-all:${versions.netty}",
+
+    // spring
+    spring_core: "org.springframework:spring-core:${versions.spring}",
+    spring_context: "org.springframework:spring-context:${versions.spring}",
+    spring_beans: "org.springframework:spring-beans:${versions.spring}",
+    spring_webmvc: "org.springframework:spring-webmvc:${versions.spring}",
+
+    // pool
+    druid: "com.alibaba:druid:${versions.druid}",
+
+    // mysql
+    spring_jdbc: "org.springframework:spring-jdbc:${versions.spring}",
+    mysql_connector: "mysql:mysql-connector-java:${versions.mysql_connector}",
+    mybatis: "org.mybatis:mybatis:${versions.mybatis}",
+    mybatis_spring: "org.mybatis:mybatis-spring:${versions.mybatis_spring}",
+
+    // cache
+    spring_redis: "org.springframework.data:spring-data-redis:${versions.spring_redis}",
+    jedis: "redis.clients:jedis:${versions.jedis}",
+
+    // mq
+    kafka_client: "org.apache.kafka:kafka-clients:${versions.kafka}",
+    kafka_connect: "org.apache.kafka:connect-runtime:${versions.kafka}",
+    aws_java_sdk: "com.amazonaws:aws-java-sdk:${versions.aws}",
+    aws_sqs: "com.amazonaws:aws-java-sdk-sqs:${versions.aws}",
+    aws_sns: "com.amazonaws:aws-java-sdk-sns:${versions.aws}",
+
+    // other
+    geoip: "com.maxmind.geoip2:geoip2:2.6.0",
+    ga: "com.brsanthu:google-analytics-java:${versions.ga}",
+    thrift: "org.apache.thrift:libthrift:${versions.thrift}",
+
+    // spark
+    spark_core: "org.apache.spark:spark-core_2.11:${versions.spark}",
+    spark_streaming: "org.apache.spark:spark-streaming_2.11:${versions.spark}",
+    spark_sql: "org.apache.spark:spark-sql_2.11:${versions.spark}",
+
+    // mongo
+    mongodb_driver_core: "org.mongodb:mongodb-driver-core:${versions.mongo}",
+    mongodb_driver_async: "org.mongodb:mongodb-driver-async:${versions.mongo}",
+    mongodb_java_driver: "org.mongodb:mongo-java-driver:${versions.mongo}",
+    mongo_spark: "org.mongodb.spark:mongo-spark-connector_2.11:${versions.mongo_spark}",
+
+    // hadoop
+    hadoop_aws: "org.apache.hadoop:hadoop-aws:${versions.hadoop_aws}",
+
+  ]
+
+  // define test libraries that needed in test compile time
+  test_libraries = [
+    junit: "junit:junit:${test_versions.junit}",
+    mockito: "org.mockito:mockito-core:${test_versions.mockito}",
+    powermock_junit4: "org.powermock:powermock-module-junit4:${test_versions.powermock}",
+    powermock_api_mockito: "org.powermock:powermock-api-mockito:${test_versions.powermock}",
+    spring_test: "org.springframework:spring-test:${versions.spring}",
+  ]
+
+  // define gradle plugins that needed for build script
+  gradle_plugins = [
+    shadow: "com.github.jengelman.gradle.plugins:shadow:${plugin_versions.shadow}",
+    spring_boot: "org.springframework.boot:spring-boot-gradle-plugin:${plugin_versions.spring_boot}",
+  ]
+}

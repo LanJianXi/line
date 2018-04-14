@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE'
+    }
+}
+
+ext.global = [
+        javac_compatibility: 1.8,
+        root_dir: "${rootProject.projectDir}",
+        build_time: new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC")),
+]
+
+allprojects {
+    buildDir = new File(global.root_dir, "out/${project.name}")
+}
+
+subprojects {
+    apply from: "${rootDir}/build/dependencies.gradle"
+
+    ext.local = [
+            group: 'com.labber',
+            version: "${RELEASE_VERSION}",
+    ]
+    apply plugin: 'java'
+    apply plugin: 'spring-boot'
+
+    sourceCompatibility = global.javac_compatibility
+    targetCompatibility = global.javac_compatibility
+
+    dependencies {
+        testCompile test_libraries.junit
+        testCompile test_libraries.mockito
+        testCompile test_libraries.powermock_junit4
+        testCompile test_libraries.powermock_api_mockito
+    }
+}

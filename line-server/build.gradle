@@ -1,0 +1,11 @@
+version RELEASE_VERSION
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+}
