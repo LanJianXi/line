@@ -7,5 +7,6 @@ repositories {
 }
 
 dependencies {
-
+    compile libraries.slf4j
+    compile libraries.logback
 }
