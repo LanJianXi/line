@@ -1,3 +1,4 @@
 rootProject.name = 'line'
-include 'line-server','line-common'
+include 'line-server','line-common',':common'
+project(':common').projectDir = new File(rootProject.projectDir, 'common')
 
